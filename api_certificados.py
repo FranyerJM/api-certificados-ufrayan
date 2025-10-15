@@ -5,6 +5,7 @@ import datetime
 import fitz  # PyMuPDF
 import shutil
 import uuid
+from flask_cors import CORS
 from flask import Flask, request, jsonify, send_file
 from PyPDF2 import PdfWriter, PdfReader
 from reportlab.pdfgen import canvas
@@ -14,6 +15,8 @@ from reportlab.pdfbase.ttfonts import TTFont
 import reportlab.rl_config
 
 app = Flask(__name__)
+
+CORS(app, resources={r"/api/*": {"origins": "https://certificados-ufrayan.vercel.app"}})
 
 def resource_path(relative_path):
     """ Obtiene la ruta absoluta del recurso, funciona para desarrollo y para PyInstaller. """
